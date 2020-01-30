@@ -1,0 +1,30 @@
+server:
+  port: 8080
+spring:
+  thymeleaf:
+    prefix: classpath:/templates/
+    cache: false
+    encoding: UTF-8
+    view-names: "*.html"
+  mvc:
+    view:
+      prefix: /WEB-INF/jsp/
+      suffix: .jsp
+  datasource:
+    username: root
+    password: 123456
+    url: jdbc:mysql:///myrep?serverTimezone=Asia/Shanghai
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  resources:
+    static-locations: classpath:/static/,file:${image.location}
+
+mybatis:
+  configration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+
+logging:
+  level:
+    root: info
+
+image:
+  location: d://image
