@@ -2,6 +2,7 @@ package com.git.rjc.service.impl;
 
 import com.git.rjc.Utils.MyrepUtils;
 import com.git.rjc.entity.User;
+import com.git.rjc.exception.NameExitException;
 import com.git.rjc.mapper.UserMapper;
 import com.git.rjc.service.UserService;
 import org.springframework.stereotype.Service;
@@ -26,7 +27,11 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void addUser(User user) {
-        user.setId(MyrepUtils.getUUID());
-        userMapper.addUser(user);
+        if(userMapper.getByNameAndPassword(user.getName(),user.getPassword()).getId()!=null){
+            user.setId(MyrepUtils.getUUID());
+            userMapper.addUser(user);
+        }else{
+            throw new NameExitException();
+        }
     }
 }
