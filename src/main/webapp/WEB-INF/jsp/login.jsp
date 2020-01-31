@@ -3,7 +3,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>首页</title>
+    <title>登录</title>
 </head>
 
 <style>
@@ -24,10 +24,14 @@
 <div id="body">
     <div id="loginForm" >
         <form action="user/login" method="post">
-            用户：<input type="text" id="userName" name="userName"><br>
-            密码：<input type="password" id="userPassword" name="userPassword"><br>
+            用户：<input type="text" id="userName" name="name"><br>
+            密码：<input type="password" id="userPassword" name="password"><br>
             <input type="submit" name="登录">
         </form>
+        <div id="regit">
+            <a href="javascript:void(0)">还没有账号？</a>
+            <a href="/user/regit">去注册</a>
+        </div>
     </div>
 </div>
 

@@ -17,13 +17,13 @@ public interface UserMapper {
      * @param password
      * @return 按照用户名和密码查询用户
      */
-    @Select("select * from myrep where name=#{name} and password=#{password}")
+    @Select("select * from user where name=#{name} and password=#{password}")
     public User getByNameAndPassword(String name,String password);
 
     /**
      * 增加用户
      * @param user
      */
-    @Insert("insert into myrep values(#{id},#{name},#{password})")
+    @Insert("insert into user values(#{id},#{name},#{password})")
     public void addUser(User user);
 }

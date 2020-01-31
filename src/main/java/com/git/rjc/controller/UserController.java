@@ -1,9 +1,7 @@
 package com.git.rjc.controller;
 
-import com.git.rjc.entity.ResponseVO;
 import com.git.rjc.entity.User;
 import com.git.rjc.service.UserService;
-import com.git.rjc.service.impl.UserServiceImpl;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
@@ -25,13 +23,24 @@ public class UserController {
         return "regit";
     }
     @PostMapping("regit")
-    public ResponseVO doRegit(User user){
+    public String doRegit(User user){
         if(user.getName()!=null&&user.getName()!=""&&user.getPassword()!=null&&user.getPassword()!=""){
             userService.addUser(user);
-            return ResponseVO.SUC;
+            return "suc";
         }else{
-            return ResponseVO.ERROR;
+            return "error";
         }
     }
-
+    @PostMapping("login")
+    public String doLogin(User user){
+        if(user.getName()!=null&&user.getName()!=""&&user.getPassword()!=null&&user.getPassword()!=""){
+            if(userService.login(user).getId()!=null){
+                return "suc";
+            }else{
+                return "error";
+            }
+        }else{
+            return "error";
+        }
+    }
 }

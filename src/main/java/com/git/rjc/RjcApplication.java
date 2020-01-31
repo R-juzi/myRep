@@ -7,7 +7,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 /**
  * @author 红茶
  */
-@MapperScan("com.git.rjc")
+@MapperScan("com.git.rjc.mapper")
 @SpringBootApplication
 public class RjcApplication {
 
