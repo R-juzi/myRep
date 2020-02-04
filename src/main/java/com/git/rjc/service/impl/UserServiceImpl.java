@@ -27,7 +27,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void addUser(User user) {
-        if(userMapper.getByNameAndPassword(user.getName(),user.getPassword()).getId()!=null){
+        if(userMapper.getByNameAndPassword(user.getName(),user.getPassword())==null){
             user.setId(MyrepUtils.getUUID());
             userMapper.addUser(user);
         }else{

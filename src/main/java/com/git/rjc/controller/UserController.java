@@ -1,9 +1,9 @@
 package com.git.rjc.controller;
 
+import com.git.rjc.entity.ResponseVO;
 import com.git.rjc.entity.User;
 import com.git.rjc.exception.ServiceException;
 import com.git.rjc.service.UserService;
-import com.sun.xml.internal.bind.v2.TODO;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
@@ -30,17 +30,18 @@ public class UserController {
     /**
      * 先判断参数是否取到 然后调用add方法，如果捕获到异常则返回500 错误页面
      */
-    public String doRegit(User user) {
+    @ResponseBody
+    public ResponseVO doRegit(User user) {
         if (user.getName() != null && user.getName() != "" && user.getPassword() != null && user.getPassword() != "") {
             try {
                 userService.addUser(user);
-                return "suc";
+                return ResponseVO.SUC;
             } catch (ServiceException e) {
                 e.printStackTrace();
-                return "error";
+                return ResponseVO.ERROR;
             }
         } else {
-            return "error";
+            return ResponseVO.ERROR;
         }
     }
 //前端请求使用ajax 后台响应改成统一格式 在前台做跳转

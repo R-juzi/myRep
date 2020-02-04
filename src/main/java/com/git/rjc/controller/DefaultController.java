@@ -20,8 +20,12 @@ public class DefaultController {
         return "hello.html";
     }
     @GetMapping("login")
-    public String index(){
+    public String login(){
         return "login";
+    }
+    @GetMapping("index")
+    public String index(){
+        return "index";
     }
 
 
