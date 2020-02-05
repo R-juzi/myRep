@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>hello</title>
 </head>
-<body>
-<div>
-    <p><a>hello,this is my first git project.</a></p>
+<body style="background-image: url('images/hello.png');width: 1920px;height: 1080px">
+<div style="text-align: center;top: 400px">
+    <p><a th:text="${message}">Hello,It's my first git project.</a></p>
 </div>
 </body>
 </html>

@@ -14,6 +14,10 @@
          var layer = layui.layer, form = layui.form;
          $("#btn").on("click",function () {
              $("#loginForm").submit();
+          /*   let name=$("#name").val(),password=$("#password").val();
+             $.post("user/login",{name:name,password:password},function (r) {
+                    location.href="index";
+             })*/
          })
      });
  })
@@ -26,16 +30,16 @@
                 <label class="layui-form-label">用户名：</label>
                 <div class="layui-input-block" style="width: 280px">
                     <input type="text" name="name" required lay-verify="required" placeholder="请输入用户名称"
-                           autocomplete="off" class="layui-input">
+                           autocomplete="off" class="layui-input" id="name" value="${name}">
                 </div>
             </div>
             <div class="layui-form-item">
                 <label class="layui-form-label">密码：</label>
                 <div class="layui-input-inline"style="width: 280px">
                     <input type="password" name="password" required lay-verify="required" placeholder="请输入密码"
-                           autocomplete="off" class="layui-input">
+                           autocomplete="off" class="layui-input" id="password">
                 </div>
-                <div class="layui-form-mid layui-word-aux">数据校验区</div>
+                <div class="layui-form-mid layui-word-aux">${message}</div>
             </div>
             <div class="layui-form-item"  style="text-align: center">
                 <button type="button" class="layui-btn" id="btn">登录</button>

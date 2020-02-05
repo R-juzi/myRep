@@ -5,6 +5,7 @@ import com.git.rjc.entity.User;
 import com.git.rjc.exception.ServiceException;
 import com.git.rjc.service.UserService;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
@@ -16,6 +17,7 @@ import javax.annotation.Resource;
  * @create: 2020-01-30 16:05
  **/
 @RequestMapping("user")
+@SessionAttributes("user")
 @Controller
 public class UserController {
     @Resource
@@ -46,15 +48,21 @@ public class UserController {
     }
 //前端请求使用ajax 后台响应改成统一格式 在前台做跳转
     @PostMapping("login")
-    public String doLogin(User user) {
+    public String doLogin(User user, Model model) {
         if (user.getName() != null && user.getName() != "" && user.getPassword() != null && user.getPassword() != "") {
-            if (userService.login(user).getId() != null) {
-                return "suc";
+            if (userService.login(user) != null) {
+                model.addAttribute("user",user);
+                model.addAttribute("message","登陆成功");
+                return "index.html";
             } else {
-                return "error";
+                model.addAttribute("name",user.getName());
+                model.addAttribute("message","账号或密码不正确");
+                return "login";
             }
         } else {
-            return "error";
+            model.addAttribute("name",user.getName());
+            model.addAttribute("message","非法输入");
+            return "login";
         }
     }
 }
