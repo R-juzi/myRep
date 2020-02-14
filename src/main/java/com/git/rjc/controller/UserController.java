@@ -65,4 +65,8 @@ public class UserController {
             return "login";
         }
     }
+    @GetMapping("index")
+    public String myIndex(){
+        return"index";
+    }
 }
