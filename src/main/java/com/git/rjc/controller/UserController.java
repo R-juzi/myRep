@@ -30,7 +30,7 @@ public class UserController {
 
     @PostMapping("regit")
     /**
-     * 先判断参数是否取到 然后调用add方法，如果捕获到异常则返回500 错误页面
+     * 先判断参数是否取到 然后调用add方法，如果捕获到异常则返回500 错误页面 嘟嘟嘟
      */
     @ResponseBody
     public ResponseVO doRegit(User user) {
