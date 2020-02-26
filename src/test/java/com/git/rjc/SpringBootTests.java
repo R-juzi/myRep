@@ -8,7 +8,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import javax.annotation.Resource;
 
 @SpringBootTest
-class RjcApplicationTests {
+class SpringBootTests {
 @Resource
 private UserService userService;
     @Resource
@@ -16,6 +16,18 @@ private UserService userService;
     @Test
     void contextLoads() {
         System.out.println(userMapper.getByNameAndPassword("rive","123"));
+    }
+    @Test
+    public void test(){
+        String a = new String("a");
+
+        String b = new String("a");
+
+        System.out.println(a == b);
+
+        System.out.println(a.equals(b));
+
+
     }
 
 }
