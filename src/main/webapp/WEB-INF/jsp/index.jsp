@@ -7,6 +7,7 @@
 <script>
     $(function () {
         console.log("hello")
+        
     })
 </script>
 <body>
