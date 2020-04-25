@@ -4,9 +4,29 @@
     <meta charset="UTF-8">
     <title>index</title>
 </head>
-<body style="background-image: url('/images/hello.png');width: 1920px;height: 1080px">
+<script type="text/javascript" src="/layui/layui.all.js"></script>
+<script type="text/javascript" src="/js/jquery-3.4.1.js"></script>
+<link rel="stylesheet" href="/layui/css/layui.css"  media="all">
+<body style="background-image: url('/images/hello.png');width:auto;height:auto">
 <div style="text-align: center;top: 400px">
     <p><a th:text="${message}">Hello,It's my first git project.</a></p>
 </div>
+<div align="center">
+<!--    <button type="button" class="layui-btn" id="go">去多媒体页面</button>-->
+    <a href="/user/multimedia" class="layui-btn">去多媒体页面</a>
+</div>
+<!--<script>-->
+<!--    let x= document.getElementById("go");-->
+<!--    x.addEventListener("click",function () {-->
+<!--        window.location="/user/multimedia";-->
+<!--    })-->
+<!--</script>-->
 </body>
 </html>
+
+
+
+
+
+
+
