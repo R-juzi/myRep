@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<script type="text/javascript" src="/layui/layui.all.js"></script>
+	<script type="text/javascript" src="/js/jquery-3.4.1.js"></script>
+	<link rel="stylesheet" href="/layui/css/layui.css"  media="all">
+	<script>
+		$(function () {
+			let mp3=document.getElementById("mp3");
+			window.addEventListener("mousedown",function () {
+				mp3.play();
+			})
+		})
+	</script>
+	<body>
+		<div id="mp3div" align="center">
+			<audio  src="/test.mp3" autoplay="autoplay" controls="controls" id="mp3"></audio>
+			
+		</div>
+		<div id="mp4div" align="center" >
+			<video src="/test.mp4"  controls="controls" width="640" height="360" >
+			</video>
+		</div>
+	<div align="center">
+		<blockquote class="layui-elem-quote">以上资源为开发者仅在此页面分享 请不要用做商业用途</blockquote>
+	</div>
+	</body>
+</html>

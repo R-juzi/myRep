@@ -69,4 +69,8 @@ public class UserController {
     public String myIndex(){
         return"index";
     }
+    @GetMapping("multimedia")
+    public String goMultimedia(){
+        return "audiotest.html";
+    }
 }
