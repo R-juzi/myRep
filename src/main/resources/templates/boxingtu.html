@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Audio</title>
+</head>
+<body>
+VOL:<input type="range" min="0" max="100" value="100" id="volume" />
+<br/>
+L<input type="range" min="0" max="200" value="100" id="equalizer" />R
+<br/>
+<canvas id="canvas" width="1000" height="500"></canvas>
+<script>
+    var AudioContext = AudioContext || webkitAudioContext || mozAudioContext || msAudioContext, // 兼容性
+        context = new AudioContext, // 创建Audio上下文
+        audio = new Audio( "/test.mp3" ),
+        media = context.createMediaElementSource( audio ), // 从元素创建媒体节点
+        lGain = context.createGain(),   // 左声道
+        rGain = context.createGain(),   // 右声道
+        splitter = context.createChannelSplitter(2),  // 分离器
+        merger = context.createChannelMerger(2),    // 合成器
+        processor = context.createScriptProcessor( 4096, 1, 1 ),
+        width = canvas.width, height = canvas.height,
+        g = canvas.getContext("2d"),        // canvas
+        vol = 100,    // 音量
+        lVol = 100,     // 左声道
+        rVol = 100      // 右声道
+    ;
+    /*
+                     → lGain
+    media → splitter         → merger → destination
+                     → rGain
+    */
+    lGain.gain.value = 1;
+    rGain.gain.value = 1;
+    g.translate( 0.5, height / 2 + 0.5 );
+
+    media.connect( splitter );
+    splitter.connect( lGain, 0 );
+    splitter.connect( rGain, 1 );
+    lGain.connect( merger, 0, 0 );
+    rGain.connect( merger, 0, 1 );
+    merger.connect( processor );
+    processor.connect( context.destination );
+
+    //控制节点的过程处理
+    processor.onaudioprocess=function(e){
+        //获取输入和输出的数据缓冲区
+        var input = e.inputBuffer.getChannelData(0);
+        var output = e.outputBuffer.getChannelData(0);
+        //将输入数缓冲复制到输出缓冲上
+        for( var i = 0; i < input.length; i++ ) output[i] = input[i];
+        //将缓冲区的数据绘制到Canvas上
+        g.clearRect( -0.5, -height / 2 - 0.5, width, height );
+        g.beginPath();
+        for(var i = 0; i < width; i++ ) {
+            g.lineTo( i, height / 2 * output[ output.length * i / width | 0 ] );
+        }
+        g.stroke();
+    };
+
+    //音量控制
+    onloadvol = volume.onchange = function() {
+        vol = volume.value;
+        setVolume();
+    };
+
+    // 声道控制
+    onloadequ = equalizer.onchange = function() {
+        lVol = equalizer.value > 100 ? 100 : equalizer.value;
+        rVol = equalizer.value < 100 ? 100 : ( 200 - equalizer.value );
+        setVolume()
+    }
+    // 设置音量
+    function setVolume() {
+        lGain.gain.value = lVol / 100 * vol / 100;
+        rGain.gain.value = rVol / 100 * vol / 100;
+    }
+
+    audio.play(); //播放
+</script>
+</body>
+</html>

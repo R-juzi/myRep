@@ -71,6 +71,6 @@ public class UserController {
     }
     @GetMapping("multimedia")
     public String goMultimedia(){
-        return "audiotest.html";
+        return "boxingtu.html";
     }
 }
