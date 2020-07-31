@@ -1,5 +1,5 @@
 server:
-  port: 8080
+  port: 80
 spring:
   thymeleaf:
     prefix: classpath:/templates/
@@ -12,7 +12,7 @@ spring:
       suffix: .jsp
   datasource:
     username: root
-    password: 123456
+    password: 0000
     url: jdbc:mysql:///myrep?serverTimezone=Asia/Shanghai
     driver-class-name: com.mysql.cj.jdbc.Driver
   resources:
