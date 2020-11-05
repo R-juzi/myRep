@@ -2,6 +2,7 @@ package com.git.rjc;
 
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 /**
@@ -10,7 +11,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @MapperScan("com.git.rjc.mapper")
 @SpringBootApplication
 public class RjcApplication {
-
     public static void main(String[] args) {
         SpringApplication.run(RjcApplication.class, args);
     }
