@@ -1,5 +1,7 @@
 package com.git.rjc.entity;
 
+import javax.validation.constraints.NotBlank;
+
 /**
  * @program: rjc
  * @description: 用户bean
@@ -8,7 +10,9 @@ package com.git.rjc.entity;
  **/
 public class User {
     private  String id;
+    @NotBlank
     private  String name;
+    @NotBlank
     private  String password;
 
     public String getId() {
